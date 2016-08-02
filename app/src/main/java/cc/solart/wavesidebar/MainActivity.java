@@ -66,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if (pos != -1) {
                     mRecyclerView.scrollToPosition(pos);
+                    LinearLayoutManager mLayoutManager =
+                            (LinearLayoutManager) mRecyclerView.getLayoutManager();
+                    mLayoutManager.scrollToPositionWithOffset(pos, 0);
                 }
             }
         });
