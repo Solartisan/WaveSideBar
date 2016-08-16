@@ -4,6 +4,6 @@
     <dimen name="large_textSize_sidebar">32sp</dimen>
     <dimen name="textSize_sidebar_choose">12sp</dimen>
     <dimen name="textSize_sidebar_padding">20sp</dimen>
-    <dimen name="radius_sidebar">20dp</dimen>
-    <dimen name="ball_radius_sidebar">24dp</dimen>
+    <dimen name="radius_sidebar">25dp</dimen>
+    <dimen name="ball_radius_sidebar">28dp</dimen>
 </resources>
