@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -293,7 +294,9 @@ public class WaveSideBarView extends View {
 
         mBallPath.reset();
         mBallPath.addCircle(mBallCentreX, mCenterY, mBallRadius, Path.Direction.CW);
-        mBallPath.op(mWavePath, Path.Op.DIFFERENCE);
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.KITKAT) {
+            mBallPath.op(mWavePath, Path.Op.DIFFERENCE);
+        }
 
         mBallPath.close();
         canvas.drawPath(mBallPath, mWavePaint);

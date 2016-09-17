@@ -2,7 +2,6 @@ WaveSideBar project
 ===================
 
 一个快速跳跃分组的侧边栏控件，示例中配合RecyclerView实现。
-因为控件中使用了`path.op`，所以level>=19，如在项目中使用，请自行修改该处实现以兼容更低版本。
 
 <img src="./preview/simple.gif">
 
