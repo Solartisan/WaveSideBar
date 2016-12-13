@@ -110,8 +110,8 @@ public class WaveSideBarView extends View {
             mTextSize = a.getFloat(R.styleable.WaveSideBarView_sidebarTextSize, mTextSize);
             mLargeTextSize = a.getFloat(R.styleable.WaveSideBarView_sidebarLargeTextSize, mLargeTextSize);
             mWaveColor = a.getColor(R.styleable.WaveSideBarView_sidebarBackgroundColor, mWaveColor);
-            mRadius = a.getColor(R.styleable.WaveSideBarView_sidebarRadius, context.getResources().getDimensionPixelSize(R.dimen.radius_sidebar));
-            mBallRadius = a.getColor(R.styleable.WaveSideBarView_sidebarBallRadius, context.getResources().getDimensionPixelSize(R.dimen.ball_radius_sidebar));
+            mRadius = a.getInt(R.styleable.WaveSideBarView_sidebarRadius, context.getResources().getDimensionPixelSize(R.dimen.radius_sidebar));
+            mBallRadius = a.getInt(R.styleable.WaveSideBarView_sidebarBallRadius, context.getResources().getDimensionPixelSize(R.dimen.ball_radius_sidebar));
             a.recycle();
         }
 
@@ -172,7 +172,7 @@ public class WaveSideBarView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mHeight = MeasureSpec.getSize(heightMeasureSpec);
-        mWidth = getWidth();
+        mWidth = getMeasuredWidth();
         mItemHeight = (mHeight - mPadding) / mLetters.size();
         mPosX = mWidth - 1.6f * mTextSize;
     }
