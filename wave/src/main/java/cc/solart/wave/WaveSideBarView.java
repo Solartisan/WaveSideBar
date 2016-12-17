@@ -141,6 +141,16 @@ public class WaveSideBarView extends View {
                 if (x < mWidth - 2 * mRadius) {
                     return false;
                 }
+                
+                if (oldChoose != newChoose) {
+                    if (newChoose >= 0 && newChoose < mLetters.size()) {
+                        mChoose = newChoose;
+                        if (listener != null) {
+                            listener.onLetterChange(mLetters.get(newChoose));
+                        }
+                    }
+                }
+                
                 startAnimator(mRatio, 1.0f);
                 break;
             case MotionEvent.ACTION_MOVE:
