@@ -37,6 +37,10 @@ public class WaveSideBarView extends View {
     // 当前选中的位置
     private int mChoose = -1;
 
+    private int oldChoose ;
+
+    private int newChoose ;
+
     // 字母列表画笔
     private Paint mLettersPaint = new Paint();
 
@@ -132,8 +136,8 @@ public class WaveSideBarView extends View {
         final float y = event.getY();
         final float x = event.getX();
 
-        final int oldChoose = mChoose;
-        final int newChoose = (int) (y / mHeight * mLetters.size());
+        oldChoose = mChoose;
+        newChoose = (int) (y / mHeight * mLetters.size());
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -141,7 +145,9 @@ public class WaveSideBarView extends View {
                 if (x < mWidth - 2 * mRadius) {
                     return false;
                 }
+                mCenterY = (int) y;
                 startAnimator(mRatio, 1.0f);
+
                 break;
             case MotionEvent.ACTION_MOVE:
 
@@ -313,7 +319,17 @@ public class WaveSideBarView extends View {
         mRatioAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator value) {
+
                 mRatio = (float) value.getAnimatedValue();
+                //球弹到位的时候，并且点击的位置变了，即点击的时候显示当前选择位置
+                if (mRatio==1f&&oldChoose != newChoose){
+                    if (newChoose >= 0 && newChoose < mLetters.size()) {
+                        mChoose = newChoose;
+                        if (listener != null) {
+                            listener.onLetterChange(mLetters.get(newChoose));
+                        }
+                    }
+                }
                 invalidate();
             }
         });
